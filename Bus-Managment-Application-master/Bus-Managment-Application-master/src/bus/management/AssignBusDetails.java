@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kamlesh
  */
-public class AllEmployee extends javax.swing.JInternalFrame {
+public class AssignBusDetails extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AllBusDetails
      */
-    public AllEmployee() {
+    public AssignBusDetails() {
         initComponents();
     }
 
@@ -43,14 +43,14 @@ public class AllEmployee extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("All Employee");
+        setTitle("Assign Bus Details");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "id", "Firstname", "Lastname", "Ph_no_1", "Ph_no_2"
+                "id", "employeeName", "busNo"
             }
         ));
         jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -94,7 +94,7 @@ public class AllEmployee extends javax.swing.JInternalFrame {
             Connection con = DriverManager.getConnection(databaseURL, "root", "");
             Statement stat = con.createStatement();    
 //            String selectQuery = "select * from bus_details where bus_no='"+busnoD+"'";
-            String selectQuery = "select * from employee_details";
+            String selectQuery = "select * from bus_assign";
 //            String selectQuery = "select * from busm";
 
 
@@ -102,13 +102,9 @@ public class AllEmployee extends javax.swing.JInternalFrame {
          
             while(rs.next()){
                 String id = String.valueOf(rs.getInt("id"));
-                String Firstname = rs.getString("firstname");
-                String Lastname = rs.getString("lastname");
-                String Ph_no_1 = rs.getString("phoneno1");
-                String Ph_no_2 = rs.getString("phoneno2");
-                
-
-                String tbData[] = {id,Firstname,Lastname,Ph_no_1,Ph_no_2};
+                String employeeName = rs.getString("employee_no");
+                String busNo = rs.getString("bus_no");
+                String tbData[] = {id,employeeName,busNo};
                 
                 DefaultTableModel tblModel = (DefaultTableModel)jTable2.getModel();
                 tblModel.addRow(tbData);

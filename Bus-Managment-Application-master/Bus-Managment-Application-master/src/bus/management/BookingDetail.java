@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bus.management;
+//package bus.management;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kamlesh
  */
-public class AllEmployee extends javax.swing.JInternalFrame {
+public class BookingDetail extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AllBusDetails
      */
-    public AllEmployee() {
+    public BookingDetail() {
         initComponents();
     }
 
@@ -35,57 +36,59 @@ public class AllEmployee extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("All Employee");
+        setTitle("All Booking Details");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Firstname", "Lastname", "Ph_no_1", "Ph_no_2"
+                "bookingID", "bookingUser", "journeyDate", "busNo", "seat", "paid", "idNo", "firstname", "lastname"
             }
         ));
-        jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTable2AncestorAdded(evt);
+                jTable1AncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
  
-    private void jTable2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable2AncestorAdded
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
         // TODO add your handling code here:
         try
         {
@@ -94,23 +97,28 @@ public class AllEmployee extends javax.swing.JInternalFrame {
             Connection con = DriverManager.getConnection(databaseURL, "root", "");
             Statement stat = con.createStatement();    
 //            String selectQuery = "select * from bus_details where bus_no='"+busnoD+"'";
-            String selectQuery = "select * from employee_details";
+            String selectQuery = "select * from bus_booking";
 //            String selectQuery = "select * from busm";
 
 
             ResultSet rs=stat.executeQuery(selectQuery);
          
             while(rs.next()){
-                String id = String.valueOf(rs.getInt("id"));
-                String Firstname = rs.getString("firstname");
-                String Lastname = rs.getString("lastname");
-                String Ph_no_1 = rs.getString("phoneno1");
-                String Ph_no_2 = rs.getString("phoneno2");
-                
+                String bookingID = String.valueOf(rs.getInt("booking_id"));
+                String bookingUser = rs.getString("booking_user");
+                String journeyDate = rs.getString("journey_date");
+                String busNo = rs.getString("bus_no");
+                String seat = rs.getString("seat");
+                String paid = rs.getString("paid");
+                String idNo = rs.getString("id_no");
+                String firstname = rs.getString("first_name");
+                String lastname = rs.getString("last_name");
+//                String lastname = String.valueOf(rs.getInt("last_name"));
+//                String price = String.valueOf(rs.getInt("total_seat"));
 
-                String tbData[] = {id,Firstname,Lastname,Ph_no_1,Ph_no_2};
+                String tbData[] = {bookingID,bookingUser,journeyDate,busNo,seat,paid,idNo,firstname,lastname};
                 
-                DefaultTableModel tblModel = (DefaultTableModel)jTable2.getModel();
+                DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
                 tblModel.addRow(tbData);
             }
            
@@ -119,11 +127,11 @@ public class AllEmployee extends javax.swing.JInternalFrame {
         {
             System.out.println(e);
         }
-    }//GEN-LAST:event_jTable2AncestorAdded
+    }//GEN-LAST:event_jTable1AncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
